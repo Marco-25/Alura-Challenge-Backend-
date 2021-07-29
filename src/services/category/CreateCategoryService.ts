@@ -18,8 +18,10 @@ class CreateCategoryService {
         if (!color) throw new CustomErrors("title not be able brank!");
 
         const existsTitle = await categoryRepository.findOne({ where: { title } });
-
         if (existsTitle) throw new CustomErrors("Category already exists!");
+
+        const existsColor = await categoryRepository.findOne({ where: { color } });
+        if (existsColor) throw new CustomErrors('this color has already been registered');
 
         const category = categoryRepository.create({
             title,
