@@ -1,7 +1,9 @@
 import { Router } from "express";
 import { CreateCategoryController } from "../controllers/category/CreateCategoryController";
+import { DeleteCategoryController } from "../controllers/category/DeleteCategoryController";
 import { ListAllCategoryController } from "../controllers/category/ListAllCategoryController";
 import { ListOneCategoryController } from "../controllers/category/ListOneCategoryController";
+import { UpdateCategoryController } from "../controllers/category/UpdateCategoryController";
 import auth from '../middlewares/authenticationMeddleware';
 
 const router = Router();
@@ -11,7 +13,7 @@ router
     .post("/categories", CreateCategoryController.handle)
     .get("/categories", ListAllCategoryController.handle)
     .get("/categories/:id", ListOneCategoryController.handle)
-// .put("/categories/:id", UpdateVideoController.handle)
-// .delete("/categories/:id", DeleteVideoController.handle)
+    .put("/categories/:id", UpdateCategoryController.handle)
+    .delete("/categories/:id", DeleteCategoryController.handle)
 
 export default router;
