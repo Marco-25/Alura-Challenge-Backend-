@@ -1,6 +1,10 @@
 {
-    "type": "sqlite",
-    "database": "src/database/alura_backend.sqlite",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "postgres",
+    "password": "root",
+    "database": "alura_backend",
     "entities": [
         "src/models/**/*.ts"
     ],

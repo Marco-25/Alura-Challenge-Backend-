@@ -1,10 +1,12 @@
 import { Column, CreateDateColumn, UpdateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Exclude } from 'class-transformer';
+import { v4 as uuid } from "uuid";
 
 @Entity('users')
 class User {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn("uuid")
+    readonly id: string;
 
     @Column()
     name: string;
@@ -12,6 +14,7 @@ class User {
     @Column()
     username: string;
 
+    @Exclude()
     @Column()
     password: string;
 
@@ -24,14 +27,9 @@ class User {
     @UpdateDateColumn()
     updated_at: Date;
 
-    json() {
-        return {
-            "id": this.id,
-            "name": this.name,
-            "username": this.username,
-            "email": this.email,
-            "created_at": this.created_at,
-            "updated_at": this.updated_at
+    constructor() {
+        if (!this.id) {
+            this.id = uuid();
         }
     }
 }
