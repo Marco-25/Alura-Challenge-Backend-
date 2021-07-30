@@ -20,6 +20,10 @@ class CreateVideoService {
         const videoRepository = getCustomRepository(VideoRepository);
         const categoryRepository = getCustomRepository(CategoryRepository);
 
+        title = title.trim();
+        description = description.trim();
+        url = url.trim();
+
         if (!title) throw new CustomErrors(`title cannot be blank!`);
         if (!description) throw new CustomErrors(`description cannot be blank!`);
         if (!url) throw new CustomErrors(`url cannot be blank!`);

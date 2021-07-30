@@ -16,6 +16,11 @@ class CreateUserService {
     async execute({ name, username, password, email }: IRequestUser): Promise<User> {
         const userRepository = getCustomRepository(UserRepository);
 
+        name = name.trim();
+        username = username.trim();
+        password = password.trim();
+        email = email.trim();
+
         if (!name || name.length < 3) throw new CustomErrors(`the name cannot be blank and must be longer than 3 characters.`)
         if (!username) throw new CustomErrors(`username cannot be blank!`)
         if (!password) throw new CustomErrors(`password cannot be blank!`)
