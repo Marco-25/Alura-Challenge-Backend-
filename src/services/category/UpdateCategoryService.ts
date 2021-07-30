@@ -15,6 +15,9 @@ class UpdateCategoryService {
     async execute({ title, color, id }: IRequestCategory): Promise<object | Category> {
         const categoryRepository = getCustomRepository(CategoryRepository);
 
+        title = title.trim();
+        color = title.trim();
+
         if (!title) throw new CustomErrors('Titile not be able blank!')
         if (!color) throw new CustomErrors('Color not be able blank!')
 

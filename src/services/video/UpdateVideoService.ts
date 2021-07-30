@@ -20,6 +20,10 @@ class UpdateVideoService {
         const videoRepository = getCustomRepository(VideoRepository);
         const categoryRepository = getCustomRepository(CategoryRepository);
 
+        title = title.trim();
+        description = description.trim();
+        url = url.trim();
+
         const existsVideo = await videoRepository.findOne(id);
 
         if (!existsVideo) throw new CustomErrors(`Video not found!`);
