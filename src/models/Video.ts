@@ -3,6 +3,8 @@ import Category from "./Category";
 
 import { v4 as uuid } from "uuid";
 
+import { Exclude } from "class-transformer";
+
 @Entity('videos')
 class Video {
 
@@ -18,6 +20,7 @@ class Video {
     @Column()
     url: string;
 
+    @Exclude()
     @Column()
     categoryId: number;
 

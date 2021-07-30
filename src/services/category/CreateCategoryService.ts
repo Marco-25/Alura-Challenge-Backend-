@@ -14,6 +14,9 @@ class CreateCategoryService {
     async execute({ title, color }: IReuestCategory): Promise<Category> {
         const categoryRepository = getCustomRepository(CategoryRepository);
 
+        title = title.trim();
+        color = title.trim();
+
         if (!title) throw new CustomErrors("title not be able brank!");
         if (!color) throw new CustomErrors("title not be able brank!");
 

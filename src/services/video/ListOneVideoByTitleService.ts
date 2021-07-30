@@ -4,15 +4,16 @@ import Video from "../../models/Video";
 import VideoRepository from "../../repositories/VideoRepository";
 
 
+interface IRequestVideo {
+    title: string;
+}
 
+class ListOneVideoByTitleService {
 
-class ListOneVideoService {
-
-    async execute(id: string): Promise<Video> {
+    async execute({ title }: IRequestVideo): Promise<Video[]> {
         const videoRepository = getCustomRepository(VideoRepository);
 
-        const video = await videoRepository.findOne(id);
-
+        const video = await videoRepository.find({ where: { title: Like(`%${title}%`) } })
         if (!video) throw new CustomErrors(`Video not found!`);
 
         return video;
@@ -21,4 +22,4 @@ class ListOneVideoService {
 
 }
 
-export { ListOneVideoService }
+export { ListOneVideoByTitleService }
