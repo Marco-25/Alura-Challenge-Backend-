@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import config from "../../config";
 
 export default async (request: Request, response: Response, next: any) => {
     const authorizationHeader = request.headers.authorization;
@@ -12,7 +13,7 @@ export default async (request: Request, response: Response, next: any) => {
 
 
     try {
-        verify(token, '0cb3d05e8b338bb9113a1a05b2470790')
+        verify(token, config.jwt.secret)
         return next();
     } catch (error) {
         return response.json({ error: "Token jwt invalid!" })
